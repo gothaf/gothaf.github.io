@@ -44,11 +44,15 @@ header h1 {
 }
 
 #hamburger {
+	width: 2rem;
 	background: none;
 	border: none;
 	cursor: pointer;
 	flex-shrink: 0;
 	margin-left: 0; /* On large screens, keep it near the left */
+}
+#export {
+	width: 2rem;
 }
 
 /* Sidebar */
