@@ -45,7 +45,7 @@ export function flushEvents() {
 	})
 		.then((res) => res.json())
 		.then((data) => {
-			console.log('Batched events sent successfully:', data);
+			//	console.log('Batched events sent successfully:', data);
 		})
 		.catch((err) => {
 			console.error('Error sending batched events:', err);

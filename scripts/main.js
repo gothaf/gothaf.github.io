@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	})
 		.then((resp) => resp.json())
 		.then((data) => {
-			console.log('Page load logged:', data);
+			//console.log('Page load logged:', data);
 		})
 		.catch((err) => {
 			console.error('Error logging page load:', err);
