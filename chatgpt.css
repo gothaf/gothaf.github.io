@@ -1,0 +1,677 @@
+html {
+	font-size: 16px; /* Base font size */
+}
+
+/* Dark theme background and text */
+body {
+	font-size: 1rem;
+	line-height: 1.75;
+	letter-spacing: 0.02em;
+	margin: 0;
+	padding: 0;
+	background-color: #212121;
+	color: #f3f3f3;
+	font-family: sans-serif;
+}
+
+p {
+	margin: 0;
+}
+
+/* Header */
+/* Base Header Styles (Desktop by default) */
+header {
+	background-color: #333;
+	color: #fff;
+	display: flex;
+	justify-content: center; /* Center the title by default */
+	align-items: center;
+	padding: 10px 20px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 1000;
+	gap: 10px;
+}
+
+header h1 {
+	margin: 0;
+	font-size: 1.5rem;
+	flex-grow: 1;
+	text-align: center;
+}
+
+#hamburger {
+	background: none;
+	color: white;
+	border: none;
+	font-size: 1.5rem;
+	cursor: pointer;
+	flex-shrink: 0;
+	margin-left: 0; /* On large screens, keep it near the left */
+}
+
+/* Sidebar */
+#sidebar {
+	background-color: #171717;
+	color: white;
+	width: 260px;
+	height: 100vh;
+	position: fixed;
+	top: 0;
+	left: 0;
+	transform: translateX(0%);
+	transition: transform 0.3s ease;
+	box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+	z-index: 999;
+	overflow-y: auto;
+	padding-top: 60px; /* Space for header */
+}
+
+#sidebar.hidden {
+	transform: translateX(-100%);
+}
+
+#sidebar ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+#sidebar ul li {
+	padding: 15px;
+	border-bottom: 1px solid #444;
+	cursor: pointer;
+	transition: background-color 0.2s;
+}
+
+#sidebar ul li:hover {
+	background-color: #444;
+}
+
+#sidebar ul li a {
+	color: white;
+	text-decoration: none;
+	font-size: 0.85em;
+}
+
+#sidebar ul li a:hover {
+	text-decoration: none;
+}
+
+/* Main Content */
+#root {
+	margin-top: 60px; /* Avoid header overlap */
+	padding: 20px;
+}
+
+/* Responsive Adjustments */
+@media only screen and (max-width: 768px) {
+	#sidebar {
+		width: 85%;
+	}
+
+	#sidebar ul li {
+		padding: 12px 16px;
+		font-size: 1rem;
+	}
+}
+
+.chatgpt-text-wrapper {
+	p {
+		margin: 0.5rem;
+	}
+}
+.chatgpt-text-wrapper > p:first-child {
+	margin-top: 0 !important;
+}
+
+/* Root container */
+#root {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	max-width: 50rem;
+	margin: 20px auto;
+	padding: 60px 20px 20px;
+}
+
+/* Conversation container */
+.conversation {
+	max-width: 98vw;
+	padding: 20px;
+	background-color: #212121;
+	border-radius: 6px;
+}
+
+.conversation h4 {
+	margin: 0 0 10px 0;
+	font-weight: normal;
+}
+
+/* Individual message container */
+.message {
+	display: flex;
+	flex-direction: column;
+	margin: 15px 0;
+	font-size: 1rem;
+}
+
+/* Author text styling */
+.author {
+	font-weight: bold;
+	margin-bottom: 6px;
+}
+
+/* Special color for user vs ChatGPT authors */
+.message.user .author {
+	color: #212121;
+}
+.message.chatgpt .author {
+	color: #fff;
+}
+.message.custom\ user\ info .author {
+	color: #d7ba7d;
+}
+
+/* “Bubble” for each part of the message */
+.bubble {
+	display: inline-block;
+	margin-bottom: 5px;
+	padding: 0.3rem 1rem;
+	max-width: 65%;
+	border-radius: 25px;
+	position: relative;
+	line-height: 1.75;
+	word-wrap: break-word;
+	white-space: pre-wrap;
+}
+.message.chatgpt .bubble {
+	align-self: flex-start;
+	border-radius: 12px;
+	position: relative;
+	margin-bottom: 5px;
+	max-width: 100%;
+}
+
+/* User on the left, ChatGPT on the right */
+.message.user .bubble {
+	background-color: #2f2f2f;
+	align-self: flex-end;
+}
+
+.message.custom\ user\ info .bubble {
+	background-color: #2e2e2e;
+	align-self: center;
+}
+
+/* Triangle “tail” for custom user info (center) — optional if needed */
+.message.custom\ user\ info .bubble::after {
+	content: '';
+	position: absolute;
+	top: 10px;
+	right: 50%;
+	transform: translateX(50%);
+	width: 0;
+	height: 0;
+	border-left: 8px solid #2e2e2e;
+	border-top: 8px solid transparent;
+	border-bottom: 8px solid transparent;
+}
+
+/* The main container that holds icon + text side by side */
+.bubble-content-chatgpt {
+	display: flex;
+	flex-direction: row;
+	align-items: flex-start; /* or center */
+	gap: 0.65rem;
+	padding: 0.75rem 1rem; /* your bubble padding here */
+}
+
+/* Force normal wrapping inside table cells, ignoring .bubble's "pre-wrap" */
+.table-wrapper table,
+.table-wrapper th,
+.table-wrapper td {
+	white-space: normal; /* override pre-wrap */
+	word-wrap: break-word; /* let long words break if needed */
+	/* also can do: overflow-wrap: anywhere; in modern browsers */
+}
+
+.custom-link {
+	font-family: ui-sans-serif, -apple-system, system-ui, Segoe UI, Helvetica, Apple Color Emoji, Arial, sans-serif, Segoe UI Emoji, Segoe UI Symbol;
+	display: inline-flex; /* inline-flex so text & icon can align */
+	align-items: center; /* vertically center content */
+	margin-left: 4px; /* ~Tailwind's ml-1 (0.25rem) */
+	height: 22px;
+	background-color: #171717; /* your background color */
+	padding: 0 8px; /* ~Tailwind px-2 => 0.5rem => 8px */
+	font-size: 0.5em; /* text-[0.5em] */
+	font-weight: 400; /* font-medium */
+	text-transform: uppercase; /* uppercase */
+	color: rgb(180, 180, 180); /* ~text-token-text-secondary */
+	border-radius: 12px; /* ~rounded-xl */
+	text-decoration: none; /* remove underline */
+	cursor: pointer;
+	transition: background-color 0.2s ease, color 0.2s ease;
+}
+.custom-link:hover {
+	background-color: #666; /* your hover background color */
+	color: #f4f4f4; /* text becomes light on hover */
+}
+
+.truncate {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	max-width: 100px; /* or whatever width you prefer */
+	display: inline-block;
+	vertical-align: middle; /* so it aligns nicely inside the link */
+}
+
+.responsive-video-container {
+	position: relative;
+	width: 100%;
+	padding-bottom: 56.25%; /* 16:9 aspect ratio = 9/16 = 0.5625 => 56.25% */
+	/* You can change to 75% for 4:3, etc. */
+}
+
+.responsive-video-container iframe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	border: 0; /* remove frameborder if you like */
+	border-radius: 8px; /* replicate .rounded-lg if you want */
+}
+
+/* Base timestamp styling */
+.timestamp {
+	font-size: 0.8rem;
+	color: #bbb;
+	font-style: italic;
+	/* You can add any base styling here */
+}
+
+/* ChatGPT’s timestamp on the left */
+.timestamp-left {
+	text-align: left;
+	margin-left: 5rem;
+	margin-top: -1rem;
+}
+
+/* User’s timestamp on the right */
+.timestamp-right {
+	text-align: right;
+	margin-right: 0.65rem;
+}
+
+/* Left icon wrapper */
+.chatgpt-icon-wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	/* Possibly set a fixed size if you want the icon area consistent */
+	width: 2rem;
+	height: 2rem;
+}
+
+/* Text area on the right */
+.chatgpt-text-wrapper {
+	max-width: 85vw;
+	display: flex;
+	flex-direction: column;
+	/* style as needed */
+	color: #fff; /* for instance, if you want white text */
+}
+
+/* Container that holds both thumbnail and overlay */
+.image-container {
+	position: relative; /* not strictly necessary, but often useful */
+	display: inline-block;
+}
+.image-wrapper {
+	margin: 0.75rem 0; /* some vertical spacing */
+	display: flex;
+	/* You could center the image if you want: */
+	justify-content: flex-end;
+}
+
+/* Thumbnail styling */
+.thumbnail {
+	max-width: 150px;
+	height: auto;
+	cursor: pointer;
+	border: 1px solid #555;
+	border-radius: 4px;
+}
+
+/* Full-size overlay styling */
+.full-image-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background-color: rgba(0, 0, 0, 0.8);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 9999;
+}
+
+/* By default, keep the overlay hidden */
+.full-image-overlay.hidden {
+	display: none;
+}
+
+/* Full-image displayed in overlay */
+.full-image {
+	max-width: 90%;
+	max-height: 90%;
+	border: 2px solid #fff;
+	border-radius: 4px;
+}
+
+/* Close button inside overlay */
+.close-overlay {
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	background-color: #333;
+	color: #fff;
+	border: none;
+	padding: 10px 15px;
+	font-size: 1rem;
+	cursor: pointer;
+	border-radius: 4px;
+}
+
+.close-overlay:hover {
+	background-color: #444;
+}
+
+.attachments-container {
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: column;
+	gap: 1rem;
+	margin: 0.75rem 0;
+	align-items: flex-end;
+}
+
+.attachment-item {
+	display: flex;
+	flex-direction: column;
+	border: 1px solid #444;
+	border-radius: 8px;
+	max-width: 45%;
+	background-color: #212121;
+}
+
+.attachment-item .attachment-image {
+	max-width: 100%;
+	border-radius: 4px;
+}
+
+.attachment-name {
+	margin-top: 4px;
+	word-break: break-word;
+	font-size: 0.85rem;
+	text-align: center;
+}
+
+.pdf-icon,
+.generic-icon {
+	font-weight: bold;
+	text-align: center;
+	font-size: 0.9rem;
+	padding: 4px;
+	background-color: #444;
+	color: #fff;
+	border-radius: 4px;
+	margin-bottom: 4px;
+}
+
+.pdf-icon {
+	background-color: #ff5588; /* or any color you like for PDFs */
+}
+
+/* Force all nested <ul> levels to use the same bullet style */
+ul,
+ul ul,
+ul ul ul {
+	list-style-type: disc; /* or circle, square, etc. */
+	margin: 0;
+	padding-left: 1.5em; /* adjust indentation as desired */
+}
+
+/* If you specifically want them all to look the same color, 
+ensure the text color is inherited or set. */
+ul,
+li {
+	color: #f3f3f3; /* example text color for dark themes */
+	margin-bottom: 0.5em;
+}
+
+.icon-md,
+.icon-sidebar {
+	stroke-width: 1.5;
+	flex-shrink: 0;
+}
+.icon-md {
+	height: 18px;
+	width: 18px;
+}
+.rounded-full {
+	border-radius: 9999px;
+}
+.overflow-hidden {
+	overflow: hidden;
+}
+.justify-center {
+	justify-content: center;
+}
+.items-center {
+	align-items: center;
+}
+.w-8 {
+	width: 2rem;
+}
+.h-8 {
+	height: 2rem;
+}
+.flex {
+	display: flex;
+}
+.gizmo-bot-avatar {
+	outline: solid 1px #424242;
+}
+.text-token-text-primary {
+	color: var(--text-primary);
+}
+.p-1 {
+	padding: 0.25rem;
+}
+.bg-token-main-surface-primary {
+	background-color: #212121;
+}
+.rounded-sm {
+	border-radius: 0.125rem;
+}
+.justify-center {
+	justify-content: center;
+}
+.items-center {
+	align-items: center;
+}
+.w-8 {
+	width: 2rem;
+}
+.h-8 {
+	height: 2rem;
+}
+.flex {
+	display: flex;
+}
+.relative {
+	position: relative;
+}
+hr {
+	display: block;
+	width: 105%;
+	border-color: hsla(0, 0%, 100%, 0.25);
+	border-top-width: 1px;
+	margin-bottom: 1em;
+	margin-top: 1em;
+	margin-left: -1.5rem;
+}
+
+table {
+	width: auto;
+	border-collapse: collapse;
+	margin: 8px 0;
+}
+th,
+td {
+	border: 1px solid #666;
+	font-size: 0.875em;
+
+	padding: 0px 10px;
+}
+th {
+	text-align: left;
+	font-size: 0.875em;
+	background-color: #333;
+	color: #fff;
+}
+h3 {
+	margin: 0;
+}
+.table-wrapper {
+	max-width: 95vw; /* or calc(100vw - someMargin) */
+	overflow-x: auto; /* horizontal scroll only here */
+	margin: 1rem 0;
+}
+
+.table-wrapper table {
+	min-width: 600px; /* so columns aren't squished */
+	width: auto;
+	border-collapse: collapse;
+	/* optionally set an explicit max-width if you prefer */
+}
+
+.conversation,
+.message {
+	/* If you have something like overflow-x: auto or hidden, remove it. */
+	overflow-x: visible; /* or no overflow setting for x */
+	/* Also ensure white-space is normal (not nowrap) */
+	white-space: normal;
+}
+@media only screen and (max-width: 768px) {
+	body {
+		font-size: 1rem; /* Adjust font size for smaller screens */
+	}
+
+	/* Make title smaller */
+	header h1 {
+		font-size: 1rem;
+	}
+	h2 {
+		font-size: 1.35rem;
+	}
+	/* Reduce header padding to save space on small screens */
+	header {
+		padding: 8px 0;
+	}
+
+	/* Adjust hamburger size/position */
+	#hamburger {
+		font-size: 1.4rem; /* slightly smaller icon */
+		margin-left: 5px; /* push it away from the left edge */
+	}
+	#root {
+		padding: 0px 2px 20px;
+	}
+	.conversation {
+		padding: 0;
+	}
+	.message {
+		font-size: 1rem;
+	}
+
+	.bubble {
+		line-height: 1.4;
+		padding: 0.3rem;
+	}
+	.message.user .bubble {
+		padding: 0.3rem 1rem;
+	}
+	.bubble-content-chatgpt {
+		display: flex;
+		flex-direction: row;
+		align-items: flex-start; /* or center */
+		gap: 0.65rem;
+		padding: 0; /* your bubble padding here */
+	}
+	.timestamp-left {
+		margin-left: 3.5rem;
+	}
+	.attachment-item {
+		max-width: 100%;
+	}
+}
+
+.p-2 {
+	padding: 0.5rem;
+}
+.gap-2 {
+	gap: 0.5rem;
+}
+.items-center {
+	align-items: center;
+}
+.w-80 {
+	width: 20rem;
+}
+.rounded-lg {
+	border-radius: 0.5rem;
+}
+.overflow-hidden {
+	overflow: hidden;
+}
+.shrink-0 {
+	flex-shrink: 0;
+}
+.w-10 {
+	width: 2.5rem;
+}
+.h-10 {
+	height: 2.5rem;
+}
+.relative {
+	position: relative;
+}
+.font-semibold {
+	font-weight: 600;
+}
+.text-ellipsis,
+.truncate {
+	text-overflow: ellipsis;
+}
+.truncate {
+	overflow: hidden;
+	white-space: nowrap;
+}
+.text-token-text-secondary {
+	color: #7d7d7d;
+}
+.text-sm {
+	font-size: 0.875rem;
+	line-height: 1.25rem;
+}
+.inline-block {
+	display: inline-block;
+}
