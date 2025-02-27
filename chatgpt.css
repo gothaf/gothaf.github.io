@@ -45,9 +45,7 @@ header h1 {
 
 #hamburger {
 	background: none;
-	color: white;
 	border: none;
-	font-size: 1.5rem;
 	cursor: pointer;
 	flex-shrink: 0;
 	margin-left: 0; /* On large screens, keep it near the left */
@@ -589,8 +587,6 @@ h3 {
 
 	/* Adjust hamburger size/position */
 	#hamburger {
-		font-size: 1.4rem; /* slightly smaller icon */
-		margin-left: 5px; /* push it away from the left edge */
 	}
 	#root {
 		padding: 0px 2px 20px;
@@ -666,7 +662,7 @@ h3 {
 	white-space: nowrap;
 }
 .text-token-text-secondary {
-	color: #b4b4b4;
+	color: #cecece;
 }
 .text-sm {
 	font-size: 0.875rem;
