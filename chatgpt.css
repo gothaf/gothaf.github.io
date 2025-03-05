@@ -267,7 +267,6 @@ header h1 {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
-	max-width: 100px; /* or whatever width you prefer */
 	display: inline-block;
 	vertical-align: middle; /* so it aligns nicely inside the link */
 }
