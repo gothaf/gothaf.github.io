@@ -408,8 +408,8 @@ export function initializeChatWithData(jsonData) {
 
         <!-- Text: file name + extension -->
         <div style="width:100%" class="overflow-hidden">
-          <div style="max-width:85%" class="truncate font-semibold">${att.name}</div>
-          <div style="max-width:15%" class="truncate text-token-text-secondary">PDF</div>
+          <div style="width:100%" class="truncate font-semibold">${att.name}</div>
+          <div class="truncate text-token-text-secondary">PDF</div>
         </div>
       </div>
     </div>

@@ -45,7 +45,7 @@ export function decodeAndFormatText(rawStr) {
 	decodedString = decodedString.replace(/^#### (.*)$/gm, '<h4>$1</h4>');
 
 	// Remove certain emojis
-	decodedString = decodedString.replace(/\uD83D\uDCA1|\uD83D\uDC49|\uD83D\uDD39|\ud83d\udd3b|\ud83d\udd25|\ud83c\udf1f|\ud83d\ude80|\u26a1/g, '');
+	decodedString = decodedString.replace(/\uD83D\uDCA1|\uD83D\uDC49|\uD83D\uDD39|\ud83d\udd3b|\ud83d\udd25|\ud83c\udf1f|\ud83d\ude80|\ud83d\udc96|\u26a1/g, '');
 
 	// Replace "fe0f 20e3" with "."
 	decodedString = decodedString.replace(/\ufe0f\u20e3/g, '.');
