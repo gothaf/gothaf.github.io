@@ -102,3 +102,14 @@ window.addEventListener('beforeunload', function () {
 	// Use sendBeacon to reliably send the exit event
 	navigator.sendBeacon('https://api.test.tradext.gr/github_pages/events.php', payload);
 });
+
+document.addEventListener('visibilitychange', function () {
+	if (document.visibilityState === 'hidden') {
+		const payload = JSON.stringify({
+			event_name: 'page_exit',
+			page_id: document.querySelector('meta[name="page-id"]')?.content || document.title,
+			timestamp: Date.now(),
+		});
+		navigator.sendBeacon('https://api.test.tradext.gr/github_pages/events.php', payload);
+	}
+});
