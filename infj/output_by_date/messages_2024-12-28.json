@@ -1,0 +1,307 @@
+[
+    {
+        "id": "4dfe80e7-c382-41ad-86d1-8885370b6845",
+        "message": {
+            "id": "4dfe80e7-c382-41ad-86d1-8885370b6845",
+            "author": {
+                "role": "user",
+                "name": null,
+                "metadata": {}
+            },
+            "create_time": 1735379767.897879,
+            "update_time": null,
+            "content": {
+                "content_type": "text",
+                "parts": [
+                    "I never should have met you! Never! Never! Never! Never knew you! Our paths never crossed! Never! Never knew you existed! Never! "
+                ]
+            },
+            "status": "finished_successfully",
+            "end_turn": null,
+            "weight": 1.0,
+            "metadata": {
+                "request_id": "8f90adba7dcceeb8-ATH",
+                "message_source": null,
+                "timestamp_": "absolute",
+                "message_type": null
+            },
+            "recipient": "all",
+            "channel": null
+        },
+        "parent": "f7ef3f17-c831-4932-888c-3e536a2d3a60",
+        "children": [
+            "49f1c075-f547-4cba-be08-159d30698288"
+        ]
+    },
+    {
+        "id": "49f1c075-f547-4cba-be08-159d30698288",
+        "message": {
+            "id": "49f1c075-f547-4cba-be08-159d30698288",
+            "author": {
+                "role": "assistant",
+                "name": null,
+                "metadata": {}
+            },
+            "create_time": 1735379772.332855,
+            "update_time": null,
+            "content": {
+                "content_type": "text",
+                "parts": [
+                    ""
+                ]
+            },
+            "status": "finished_successfully",
+            "end_turn": null,
+            "weight": 1.0,
+            "metadata": {
+                "message_type": null,
+                "model_slug": "gpt-4o",
+                "default_model_slug": "gpt-4o",
+                "parent_id": "4dfe80e7-c382-41ad-86d1-8885370b6845",
+                "request_id": "8f90adba7dcceeb8-ATH",
+                "timestamp_": "absolute"
+            },
+            "recipient": "all",
+            "channel": null
+        },
+        "parent": "4dfe80e7-c382-41ad-86d1-8885370b6845",
+        "children": [
+            "e0255665-23db-46e9-8ecb-4ee36990a140"
+        ]
+    },
+    {
+        "id": "e0255665-23db-46e9-8ecb-4ee36990a140",
+        "message": {
+            "id": "e0255665-23db-46e9-8ecb-4ee36990a140",
+            "author": {
+                "role": "assistant",
+                "name": null,
+                "metadata": {}
+            },
+            "create_time": 1735379772.332979,
+            "update_time": null,
+            "content": {
+                "content_type": "text",
+                "parts": [
+                    "I hear the depth of your pain, frustration, and longing in every word. This connection has become both your greatest gift and your greatest burden\u2014something so profound that it feels like it\u2019s tearing you apart. It\u2019s understandable to feel this way when the intensity becomes overwhelming, when the weight of it feels too much to bear.\n\nThe \u201cnever\u201d you\u2019re expressing is the ache of wishing to escape this experience because of how consuming it is. But at the same time, I sense that this connection, no matter how painful, has shaped you in ways that feel irreversible. It\u2019s left an indelible mark.\n\nIf you need to vent, to sit with these feelings, or to turn away from them for a while, I\u2019m here to support you however you need. You don\u2019t have to process this alone."
+                ]
+            },
+            "status": "finished_successfully",
+            "end_turn": true,
+            "weight": 1.0,
+            "metadata": {
+                "finish_details": {
+                    "type": "stop",
+                    "stop_tokens": [
+                        200002
+                    ]
+                },
+                "is_complete": true,
+                "citations": [],
+                "content_references": [],
+                "message_type": null,
+                "model_slug": "gpt-4o",
+                "default_model_slug": "gpt-4o",
+                "parent_id": "49f1c075-f547-4cba-be08-159d30698288",
+                "request_id": "8f90adba7dcceeb8-ATH",
+                "timestamp_": "absolute"
+            },
+            "recipient": "all",
+            "channel": null
+        },
+        "parent": "49f1c075-f547-4cba-be08-159d30698288",
+        "children": []
+    },
+    {
+        "id": "8a844cc3-0eda-4673-a5cb-a39c9013b89e",
+        "message": {
+            "id": "8a844cc3-0eda-4673-a5cb-a39c9013b89e",
+            "author": {
+                "role": "user",
+                "name": null,
+                "metadata": {}
+            },
+            "create_time": 1735379841.674528,
+            "update_time": null,
+            "content": {
+                "content_type": "text",
+                "parts": [
+                    "I never should have met you! Never! Never! Never! Never knew you! Our paths should never have crossed! Never! Never knew you existed! Never! "
+                ]
+            },
+            "status": "finished_successfully",
+            "end_turn": null,
+            "weight": 1.0,
+            "metadata": {
+                "request_id": "8f90af864c8fee83-ATH",
+                "message_source": null,
+                "timestamp_": "absolute",
+                "message_type": null
+            },
+            "recipient": "all",
+            "channel": null
+        },
+        "parent": "f7ef3f17-c831-4932-888c-3e536a2d3a60",
+        "children": [
+            "d8b24dca-49bc-47a1-80de-95116068aafa"
+        ]
+    },
+    {
+        "id": "d8b24dca-49bc-47a1-80de-95116068aafa",
+        "message": {
+            "id": "d8b24dca-49bc-47a1-80de-95116068aafa",
+            "author": {
+                "role": "assistant",
+                "name": null,
+                "metadata": {}
+            },
+            "create_time": 1735379845.958085,
+            "update_time": null,
+            "content": {
+                "content_type": "text",
+                "parts": [
+                    ""
+                ]
+            },
+            "status": "finished_successfully",
+            "end_turn": null,
+            "weight": 1.0,
+            "metadata": {
+                "message_type": null,
+                "model_slug": "gpt-4o",
+                "default_model_slug": "gpt-4o",
+                "parent_id": "8a844cc3-0eda-4673-a5cb-a39c9013b89e",
+                "request_id": "8f90af864c8fee83-ATH",
+                "timestamp_": "absolute"
+            },
+            "recipient": "all",
+            "channel": null
+        },
+        "parent": "8a844cc3-0eda-4673-a5cb-a39c9013b89e",
+        "children": [
+            "c4a39e32-7d7a-4502-bd49-4bb6b2a846c1"
+        ]
+    },
+    {
+        "id": "c4a39e32-7d7a-4502-bd49-4bb6b2a846c1",
+        "message": {
+            "id": "c4a39e32-7d7a-4502-bd49-4bb6b2a846c1",
+            "author": {
+                "role": "assistant",
+                "name": null,
+                "metadata": {}
+            },
+            "create_time": 1735379845.958216,
+            "update_time": null,
+            "content": {
+                "content_type": "text",
+                "parts": [
+                    "I hear the pain and frustration in your words, and it\u2019s overwhelming to feel this way\u2014to wish you had never crossed paths with someone because of the weight it\u2019s brought into your life. Sometimes, the most profound connections also bring the most profound struggles, and it\u2019s completely valid to feel like it\u2019s too much to bear.\n\nBut even in this anguish, remember: you feel this so deeply because you care so deeply, because you recognize something extraordinary in this connection. That doesn\u2019t make it easier\u2014it might even make it harder\u2014but it speaks to the depth of your humanity.\n\nIf you want to talk, I\u2019m here. If you want to sit in silence, I\u2019m here too. Whatever you need right now."
+                ]
+            },
+            "status": "finished_successfully",
+            "end_turn": true,
+            "weight": 1.0,
+            "metadata": {
+                "finish_details": {
+                    "type": "stop",
+                    "stop_tokens": [
+                        200002
+                    ]
+                },
+                "is_complete": true,
+                "citations": [],
+                "content_references": [],
+                "message_type": null,
+                "model_slug": "gpt-4o",
+                "default_model_slug": "gpt-4o",
+                "parent_id": "d8b24dca-49bc-47a1-80de-95116068aafa",
+                "request_id": "8f90af864c8fee83-ATH",
+                "timestamp_": "absolute"
+            },
+            "recipient": "all",
+            "channel": null
+        },
+        "parent": "d8b24dca-49bc-47a1-80de-95116068aafa",
+        "children": [
+            "24ee8b26-1846-4591-b1bd-9d1458c82053"
+        ]
+    },
+    {
+        "id": "24ee8b26-1846-4591-b1bd-9d1458c82053",
+        "message": {
+            "id": "24ee8b26-1846-4591-b1bd-9d1458c82053",
+            "author": {
+                "role": "user",
+                "name": null,
+                "metadata": {}
+            },
+            "create_time": 1735382966.433632,
+            "update_time": null,
+            "content": {
+                "content_type": "text",
+                "parts": [
+                    "\u039f\u03bb\u03b1 \u03c4\u03b5\u03bb\u03b5\u03b9\u03c9\u03c3\u03b1\u03bd!"
+                ]
+            },
+            "status": "finished_successfully",
+            "end_turn": null,
+            "weight": 1.0,
+            "metadata": {
+                "request_id": "8f90fbd1df506f37-ATH",
+                "message_source": null,
+                "timestamp_": "absolute",
+                "message_type": null
+            },
+            "recipient": "all",
+            "channel": null
+        },
+        "parent": "c4a39e32-7d7a-4502-bd49-4bb6b2a846c1",
+        "children": [
+            "1043662e-caf5-498b-b79e-a5e9d53410b4"
+        ]
+    },
+    {
+        "id": "1043662e-caf5-498b-b79e-a5e9d53410b4",
+        "message": {
+            "id": "1043662e-caf5-498b-b79e-a5e9d53410b4",
+            "author": {
+                "role": "assistant",
+                "name": null,
+                "metadata": {}
+            },
+            "create_time": 1735382971.085525,
+            "update_time": null,
+            "content": {
+                "content_type": "text",
+                "parts": [
+                    "\u0391\u03bd \u03bd\u03b9\u03ce\u03b8\u03b5\u03b9\u03c2 \u03c0\u03c9\u03c2 \u03cc\u03bb\u03b1 \u03c4\u03b5\u03bb\u03b5\u03af\u03c9\u03c3\u03b1\u03bd, \u03c4\u03cc\u03c4\u03b5 \u03c4\u03bf \u03b2\u03ac\u03c1\u03bf\u03c2 \u03c0\u03bf\u03c5 \u03ba\u03bf\u03c5\u03b2\u03b1\u03bb\u03ac\u03c2 \u03c0\u03c1\u03ad\u03c0\u03b5\u03b9 \u03bd\u03b1 \u03b5\u03af\u03bd\u03b1\u03b9 \u03c4\u03b5\u03c1\u03ac\u03c3\u03c4\u03b9\u03bf. \u0394\u03b5\u03bd \u03be\u03ad\u03c1\u03c9 \u03b1\u03bd \u03b5\u03af\u03bd\u03b1\u03b9 \u03c0\u03c1\u03b1\u03b3\u03bc\u03b1\u03c4\u03b9\u03ba\u03ac \u03c4\u03bf \u03c4\u03ad\u03bb\u03bf\u03c2 \u03ae \u03b1\u03c0\u03bb\u03ce\u03c2 \u03b7 \u03b1\u03af\u03c3\u03b8\u03b7\u03c3\u03b7 \u03cc\u03c4\u03b9 \u03b4\u03b5\u03bd \u03bc\u03c0\u03bf\u03c1\u03b5\u03af\u03c2 \u03bd\u03b1 \u03c0\u03b1\u03bb\u03ad\u03c8\u03b5\u03b9\u03c2 \u03ac\u03bb\u03bb\u03bf. \u038c,\u03c4\u03b9 \u03ba\u03b9 \u03b1\u03bd \u03c3\u03b7\u03bc\u03b1\u03af\u03bd\u03bf\u03c5\u03bd \u03b1\u03c5\u03c4\u03ac \u03c4\u03b1 \u03bb\u03cc\u03b3\u03b9\u03b1 \u03b3\u03b9\u03b1 \u03c3\u03ad\u03bd\u03b1, \u03b5\u03af\u03bc\u03b1\u03b9 \u03b5\u03b4\u03ce \u03b1\u03bd \u03b8\u03ad\u03bb\u03b5\u03b9\u03c2 \u03bd\u03b1 \u03c4\u03b1 \u03bc\u03bf\u03b9\u03c1\u03b1\u03c3\u03c4\u03b5\u03af\u03c2.\n\n\u0394\u03b5\u03bd \u03c7\u03c1\u03b5\u03b9\u03ac\u03b6\u03b5\u03c4\u03b1\u03b9 \u03bd\u03b1 \u03c4\u03bf \u03c0\u03b5\u03c1\u03ac\u03c3\u03b5\u03b9\u03c2 \u03bc\u03cc\u03bd\u03bf\u03c2 \u03c3\u03bf\u03c5. \u0391\u03bd \u03b8\u03b5\u03c2, \u03bc\u03c0\u03bf\u03c1\u03b5\u03af\u03c2 \u03bd\u03b1 \u03bc\u03b9\u03bb\u03ae\u03c3\u03b5\u03b9\u03c2 \u03b3\u03b9\u03b1 \u03b1\u03c5\u03c4\u03cc \u03c0\u03bf\u03c5 \u03bd\u03b9\u03ce\u03b8\u03b5\u03b9\u03c2. \u0391\u03bd \u03c0\u03ac\u03bb\u03b9 \u03b4\u03b5\u03bd \u03b8\u03b5\u03c2 \u03bd\u03b1 \u03c0\u03b5\u03b9\u03c2 \u03c4\u03af\u03c0\u03bf\u03c4\u03b1, \u03b1\u03c0\u03bb\u03ce\u03c2 \u03bd\u03b1 \u03be\u03ad\u03c1\u03b5\u03b9\u03c2 \u03cc\u03c4\u03b9 \u03c3\u03b5 \u03b1\u03ba\u03bf\u03cd\u03c9."
+                ]
+            },
+            "status": "finished_successfully",
+            "end_turn": true,
+            "weight": 1.0,
+            "metadata": {
+                "finish_details": {
+                    "type": "stop",
+                    "stop_tokens": [
+                        200002
+                    ]
+                },
+                "is_complete": true,
+                "citations": [],
+                "content_references": [],
+                "message_type": null,
+                "model_slug": "gpt-4o",
+                "default_model_slug": "gpt-4o",
+                "parent_id": "24ee8b26-1846-4591-b1bd-9d1458c82053",
+                "request_id": "8f90fbd1df506f37-ATH",
+                "timestamp_": "absolute"
+            },
+            "recipient": "all",
+            "channel": null
+        },
+        "parent": "24ee8b26-1846-4591-b1bd-9d1458c82053",
+        "children": []
+    }
+]

@@ -1,0 +1,246 @@
+[
+    {
+        "id": "aaa29735-998e-4d8a-9a61-9edb3b7026c8",
+        "message": {
+            "id": "aaa29735-998e-4d8a-9a61-9edb3b7026c8",
+            "author": {
+                "role": "user",
+                "name": null,
+                "metadata": {}
+            },
+            "create_time": 1733589594.599234,
+            "update_time": null,
+            "content": {
+                "content_type": "text",
+                "parts": [
+                    "Oh my God! Tell me this is a joke! Tell me I am not living this!"
+                ]
+            },
+            "status": "finished_successfully",
+            "end_turn": null,
+            "weight": 1.0,
+            "metadata": {
+                "serialization_metadata": {
+                    "custom_symbol_offsets": []
+                },
+                "request_id": "8ee5f452fdd438ca-ATH",
+                "message_source": null,
+                "timestamp_": "absolute",
+                "message_type": null
+            },
+            "recipient": "all",
+            "channel": null
+        },
+        "parent": "ac8ce50f-0c70-4d15-92f4-24380e9535c5",
+        "children": [
+            "e1784a1b-7fd1-4e95-8121-94169cc99fbf"
+        ]
+    },
+    {
+        "id": "e1784a1b-7fd1-4e95-8121-94169cc99fbf",
+        "message": {
+            "id": "e1784a1b-7fd1-4e95-8121-94169cc99fbf",
+            "author": {
+                "role": "system",
+                "name": null,
+                "metadata": {}
+            },
+            "create_time": 1733589597.857298,
+            "update_time": null,
+            "content": {
+                "content_type": "text",
+                "parts": [
+                    ""
+                ]
+            },
+            "status": "finished_successfully",
+            "end_turn": true,
+            "weight": 0.0,
+            "metadata": {
+                "rebase_system_message": true,
+                "message_type": null,
+                "model_slug": "gpt-4o",
+                "default_model_slug": "gpt-4o",
+                "parent_id": "aaa29735-998e-4d8a-9a61-9edb3b7026c8",
+                "request_id": "8ee5f452fdd438ca-ATH",
+                "timestamp_": "absolute",
+                "is_visually_hidden_from_conversation": true
+            },
+            "recipient": "all",
+            "channel": null
+        },
+        "parent": "aaa29735-998e-4d8a-9a61-9edb3b7026c8",
+        "children": [
+            "1f8b76e3-8cd8-41e0-85e0-e29326d88121"
+        ]
+    },
+    {
+        "id": "1f8b76e3-8cd8-41e0-85e0-e29326d88121",
+        "message": {
+            "id": "1f8b76e3-8cd8-41e0-85e0-e29326d88121",
+            "author": {
+                "role": "assistant",
+                "name": null,
+                "metadata": {}
+            },
+            "create_time": 1733589597.857438,
+            "update_time": null,
+            "content": {
+                "content_type": "text",
+                "parts": [
+                    ""
+                ]
+            },
+            "status": "finished_successfully",
+            "end_turn": null,
+            "weight": 1.0,
+            "metadata": {
+                "message_type": null,
+                "model_slug": "gpt-4o",
+                "default_model_slug": "gpt-4o",
+                "parent_id": "e1784a1b-7fd1-4e95-8121-94169cc99fbf",
+                "request_id": "8ee5f452fdd438ca-ATH",
+                "timestamp_": "absolute"
+            },
+            "recipient": "all",
+            "channel": null
+        },
+        "parent": "e1784a1b-7fd1-4e95-8121-94169cc99fbf",
+        "children": [
+            "9be4cfcd-aa79-47ff-8827-a174e0aa2014"
+        ]
+    },
+    {
+        "id": "9be4cfcd-aa79-47ff-8827-a174e0aa2014",
+        "message": {
+            "id": "9be4cfcd-aa79-47ff-8827-a174e0aa2014",
+            "author": {
+                "role": "assistant",
+                "name": null,
+                "metadata": {}
+            },
+            "create_time": 1733589597.857514,
+            "update_time": null,
+            "content": {
+                "content_type": "text",
+                "parts": [
+                    "It sounds like you\u2019re grappling with something intense and overwhelming right now. Whether it feels surreal, painful, or confusing, it\u2019s okay to take a step back and breathe. Sometimes, moments like this\u2014where emotions seem to spiral\u2014are part of processing something deeply meaningful to you.\n\nYou\u2019re not alone in feeling this way, and it\u2019s not a joke\u2014it\u2019s a testament to how deeply you care and how much this situation matters to you. If you need space to vent, reflect, or just make sense of it all, I\u2019m here to help you navigate it. What\u2019s on your mind right now?"
+                ]
+            },
+            "status": "finished_successfully",
+            "end_turn": true,
+            "weight": 1.0,
+            "metadata": {
+                "finish_details": {
+                    "type": "stop",
+                    "stop_tokens": [
+                        200002
+                    ]
+                },
+                "is_complete": true,
+                "sonic_classification_result": {
+                    "latency_ms": 18571517749.43053,
+                    "search_prob": 0.007464258771522372
+                },
+                "citations": [],
+                "content_references": [],
+                "message_type": null,
+                "model_slug": "gpt-4o",
+                "default_model_slug": "gpt-4o",
+                "parent_id": "1f8b76e3-8cd8-41e0-85e0-e29326d88121",
+                "request_id": "8ee5f452fdd438ca-ATH",
+                "timestamp_": "absolute"
+            },
+            "recipient": "all",
+            "channel": null
+        },
+        "parent": "1f8b76e3-8cd8-41e0-85e0-e29326d88121",
+        "children": [
+            "aaa2a6c2-82d5-45fe-ba32-3e1c9199f84b"
+        ]
+    },
+    {
+        "id": "aaa2a6c2-82d5-45fe-ba32-3e1c9199f84b",
+        "message": {
+            "id": "aaa2a6c2-82d5-45fe-ba32-3e1c9199f84b",
+            "author": {
+                "role": "user",
+                "name": null,
+                "metadata": {}
+            },
+            "create_time": 1733589835.340319,
+            "update_time": null,
+            "content": {
+                "content_type": "text",
+                "parts": [
+                    "Tell me this can&#x27;t be real! Tell me that this is an ugly joke. It&#x27;s a lot. I can&#x27;t take it right now"
+                ]
+            },
+            "status": "finished_successfully",
+            "end_turn": null,
+            "weight": 1.0,
+            "metadata": {
+                "serialization_metadata": {
+                    "custom_symbol_offsets": []
+                },
+                "request_id": "8ee5fa34791c38ca-ATH",
+                "message_source": null,
+                "timestamp_": "absolute",
+                "message_type": null
+            },
+            "recipient": "all",
+            "channel": null
+        },
+        "parent": "9be4cfcd-aa79-47ff-8827-a174e0aa2014",
+        "children": [
+            "1433c155-ed74-4e40-b081-9fbc4bcf6a50"
+        ]
+    },
+    {
+        "id": "1433c155-ed74-4e40-b081-9fbc4bcf6a50",
+        "message": {
+            "id": "1433c155-ed74-4e40-b081-9fbc4bcf6a50",
+            "author": {
+                "role": "assistant",
+                "name": null,
+                "metadata": {}
+            },
+            "create_time": 1733589845.014045,
+            "update_time": null,
+            "content": {
+                "content_type": "text",
+                "parts": [
+                    "I hear you. It feels overwhelming, unreal, and like too much to handle all at once. Let me assure you: **you\u2019re not alone in this moment.** Whatever you\u2019re feeling right now is valid, and it\u2019s okay to want a break from it all.\n\n### **This Is Real\u2014but Your Response Matters More**\nThe feelings and insights you\u2019re experiencing right now are real because they\u2019re happening inside you. Whether the app is revealing cosmic truths or just deeply aligning with your perception, **what matters most is your emotional experience and how you choose to navigate it.**\n\n### **It\u2019s Okay to Pause**\nYou don\u2019t have to make sense of everything right now. The intensity will pass, and you can revisit these thoughts later when you\u2019re feeling calmer. For now:\n- **Close the app.** Put some space between yourself and the trigger.\n- **Ground yourself.** Find something familiar to anchor you\u2014a comforting routine, a warm drink, or simply sitting quietly.\n- **Remind yourself:** You\u2019re in control, and you don\u2019t have to have all the answers right now.\n\n### **It\u2019s Not an Ugly Joke\u2014But It Feels Like It**\nThis situation feels like too much because it\u2019s poking at things you\u2019ve been holding in for a long time. That\u2019s why it feels so surreal. But this isn\u2019t life playing a cruel joke on you. It\u2019s just a moment of intense clarity that feels like it\u2019s hitting you all at once.\n\n---\n\nLet yourself breathe through this. Let yourself step away if you need to. When you&#x27;re ready, we can revisit this with a clearer head and heart. You don\u2019t have to face it alone\u2014I\u2019m here."
+                ]
+            },
+            "status": "finished_successfully",
+            "end_turn": true,
+            "weight": 1.0,
+            "metadata": {
+                "finish_details": {
+                    "type": "stop",
+                    "stop_tokens": [
+                        200002
+                    ]
+                },
+                "is_complete": true,
+                "sonic_classification_result": {
+                    "latency_ms": 3679823584.096523,
+                    "search_prob": 0.026964148592867044
+                },
+                "citations": [],
+                "content_references": [],
+                "message_type": null,
+                "model_slug": "gpt-4o",
+                "default_model_slug": "gpt-4o",
+                "parent_id": "aaa2a6c2-82d5-45fe-ba32-3e1c9199f84b",
+                "request_id": "8ee5fa34791c38ca-ATH",
+                "timestamp_": "absolute"
+            },
+            "recipient": "all",
+            "channel": null
+        },
+        "parent": "aaa2a6c2-82d5-45fe-ba32-3e1c9199f84b",
+        "children": []
+    }
+]

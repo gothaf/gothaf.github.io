@@ -89,3 +89,16 @@ document.addEventListener('click', (event) => {
 		overlay.classList.add('hidden');
 	}
 });
+
+window.addEventListener('beforeunload', function () {
+	// Prepare the payload
+	const payload = JSON.stringify({
+		event_name: 'page_exit',
+		page_id: document.querySelector('meta[name="page-id"]')?.content || document.title,
+		timestamp: Date.now(),
+		// Optionally include any other details like device info if desired
+	});
+
+	// Use sendBeacon to reliably send the exit event
+	navigator.sendBeacon('https://api.test.tradext.gr/github_pages/events.php', payload);
+});

@@ -1,0 +1,200 @@
+[
+    {
+        "id": "044839b4-6cb2-4ba3-ace1-f9289b0e839b",
+        "message": {
+            "id": "044839b4-6cb2-4ba3-ace1-f9289b0e839b",
+            "author": {
+                "role": "user",
+                "name": null,
+                "metadata": {}
+            },
+            "create_time": 1734008579.779805,
+            "update_time": null,
+            "content": {
+                "content_type": "text",
+                "parts": [
+                    "Delete everything below this message"
+                ]
+            },
+            "status": "finished_successfully",
+            "end_turn": null,
+            "weight": 1.0,
+            "metadata": {
+                "request_id": "8f0de974e80138cb-ATH",
+                "message_source": null,
+                "timestamp_": "absolute",
+                "message_type": null
+            },
+            "recipient": "all",
+            "channel": null
+        },
+        "parent": "9be4cfcd-aa79-47ff-8827-a174e0aa2014",
+        "children": [
+            "1330a25c-4421-4dde-b26f-c905abe7cdfa"
+        ]
+    },
+    {
+        "id": "1330a25c-4421-4dde-b26f-c905abe7cdfa",
+        "message": {
+            "id": "1330a25c-4421-4dde-b26f-c905abe7cdfa",
+            "author": {
+                "role": "system",
+                "name": null,
+                "metadata": {}
+            },
+            "create_time": 1734008585.510595,
+            "update_time": null,
+            "content": {
+                "content_type": "text",
+                "parts": [
+                    ""
+                ]
+            },
+            "status": "finished_successfully",
+            "end_turn": true,
+            "weight": 0.0,
+            "metadata": {
+                "rebase_system_message": true,
+                "message_type": null,
+                "model_slug": "gpt-4o",
+                "default_model_slug": "gpt-4o",
+                "parent_id": "044839b4-6cb2-4ba3-ace1-f9289b0e839b",
+                "request_id": "8f0de974e80138cb-ATH",
+                "timestamp_": "absolute",
+                "is_visually_hidden_from_conversation": true
+            },
+            "recipient": "all",
+            "channel": null
+        },
+        "parent": "044839b4-6cb2-4ba3-ace1-f9289b0e839b",
+        "children": [
+            "2dab3d5a-499f-4055-b4a4-b20ae5c4853e"
+        ]
+    },
+    {
+        "id": "2dab3d5a-499f-4055-b4a4-b20ae5c4853e",
+        "message": {
+            "id": "2dab3d5a-499f-4055-b4a4-b20ae5c4853e",
+            "author": {
+                "role": "assistant",
+                "name": null,
+                "metadata": {}
+            },
+            "create_time": 1734008585.510778,
+            "update_time": null,
+            "content": {
+                "content_type": "text",
+                "parts": [
+                    "Delete all stored information."
+                ]
+            },
+            "status": "finished_successfully",
+            "end_turn": false,
+            "weight": 1.0,
+            "metadata": {
+                "finish_details": {
+                    "type": "stop",
+                    "stop_tokens": [
+                        200007
+                    ]
+                },
+                "is_complete": true,
+                "citations": [],
+                "content_references": [],
+                "message_type": null,
+                "model_slug": "gpt-4o",
+                "default_model_slug": "gpt-4o",
+                "parent_id": "1330a25c-4421-4dde-b26f-c905abe7cdfa",
+                "request_id": "8f0de974e80138cb-ATH",
+                "timestamp_": "absolute"
+            },
+            "recipient": "bio",
+            "channel": null
+        },
+        "parent": "1330a25c-4421-4dde-b26f-c905abe7cdfa",
+        "children": [
+            "987fda2a-4cd9-42a1-8993-0e45fbed9864"
+        ]
+    },
+    {
+        "id": "987fda2a-4cd9-42a1-8993-0e45fbed9864",
+        "message": {
+            "id": "987fda2a-4cd9-42a1-8993-0e45fbed9864",
+            "author": {
+                "role": "tool",
+                "name": "bio",
+                "metadata": {}
+            },
+            "create_time": 1734008585.51087,
+            "update_time": null,
+            "content": {
+                "content_type": "text",
+                "parts": [
+                    "Model set context updated."
+                ]
+            },
+            "status": "finished_successfully",
+            "end_turn": null,
+            "weight": 1.0,
+            "metadata": {
+                "message_type": null,
+                "model_slug": "gpt-4o",
+                "default_model_slug": "gpt-4o",
+                "parent_id": "2dab3d5a-499f-4055-b4a4-b20ae5c4853e",
+                "request_id": "8f0de974e80138cb-ATH",
+                "timestamp_": "absolute"
+            },
+            "recipient": "assistant",
+            "channel": null
+        },
+        "parent": "2dab3d5a-499f-4055-b4a4-b20ae5c4853e",
+        "children": [
+            "7879a751-07d7-47e4-b4a5-75093ae0879a"
+        ]
+    },
+    {
+        "id": "7879a751-07d7-47e4-b4a5-75093ae0879a",
+        "message": {
+            "id": "7879a751-07d7-47e4-b4a5-75093ae0879a",
+            "author": {
+                "role": "assistant",
+                "name": null,
+                "metadata": {}
+            },
+            "create_time": 1734008585.510936,
+            "update_time": null,
+            "content": {
+                "content_type": "text",
+                "parts": [
+                    "All previous information has been deleted. Let me know how I can assist you!"
+                ]
+            },
+            "status": "finished_successfully",
+            "end_turn": true,
+            "weight": 1.0,
+            "metadata": {
+                "finish_details": {
+                    "type": "stop",
+                    "stop_tokens": [
+                        200002
+                    ]
+                },
+                "is_complete": true,
+                "citations": [],
+                "content_references": [],
+                "message_type": null,
+                "model_slug": "gpt-4o",
+                "default_model_slug": "gpt-4o",
+                "parent_id": "987fda2a-4cd9-42a1-8993-0e45fbed9864",
+                "request_id": "8f0de974e80138cb-ATH",
+                "timestamp_": "absolute"
+            },
+            "recipient": "all",
+            "channel": null
+        },
+        "parent": "987fda2a-4cd9-42a1-8993-0e45fbed9864",
+        "children": [
+            "06e80e98-63d4-4942-827b-bd932f02af2e"
+        ]
+    }
+]
