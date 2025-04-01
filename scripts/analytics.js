@@ -3,36 +3,37 @@
 let localEventsQueue = [];
 
 /**
- * Returns device info (type, resolution, model)
+ * Returns basic device info that the backend will use for model/type detection.
+ * This function provides only raw data.
  */
-function getDeviceInfo() {
-	const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-	const screenWidth = window.screen.width;
-	const screenHeight = window.screen.height;
-	const screenResolution = `${screenWidth}x${screenHeight}`;
-	const isMobile = /android|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent.toLowerCase());
-
-	let model = 'Unknown Device';
-	if (/iPhone/.test(userAgent)) {
-		if (screenHeight === 844) model = 'iPhone 12/12 Pro';
-		else if (screenHeight === 926) model = 'iPhone 12 Pro Max';
-		else if (screenHeight === 896) model = 'iPhone XR/11';
-		else if (screenHeight === 780) model = 'iPhone 13 Mini';
-		else if (screenHeight === 852) model = 'iPhone 14';
-		else if (screenHeight === 932) model = 'iPhone 14 Pro Max';
-	} else if (/Android/.test(userAgent)) {
-		model = 'Android Device';
-	} else if (!isMobile) {
-		model = 'Desktop/Laptop';
-	}
-
+export function getBasicDeviceInfo() {
 	return {
-		device_type: isMobile ? 'Mobile' : 'Desktop',
-		screen_resolution: screenResolution,
-		device_model: model,
+		user_agent: navigator.userAgent || '',
+		screen_resolution: `${window.screen.width}x${window.screen.height}`,
+		device_pixel_ratio: window.devicePixelRatio || 1,
+		platform: navigator.platform || '',
 	};
 }
 
+/**
+ * Log an event locally and also send to Google Analytics if available.
+ * @param {string} eventName - e.g. "scroll_start"
+ * @param {string} eventLabel - e.g. "message-1"
+ * @param {string} pageId
+ */
+export function logLocalEvent(eventName, eventLabel, pageId) {
+	// Get basic device info from the client
+	const deviceInfo = getBasicDeviceInfo();
+
+	// Add event to the local events queue along with device info
+	localEventsQueue.push({
+		event_name: eventName,
+		event_label: eventLabel,
+		page_id: pageId,
+		timestamp: Date.now(),
+		...deviceInfo,
+	});
+}
 /**
  * Log an event locally and also send to Google Analytics if available.
  * @param {string} eventName - e.g. "scroll_start"
