@@ -33,23 +33,6 @@ export function logLocalEvent(eventName, eventLabel, pageId) {
 		timestamp: Date.now(),
 		...deviceInfo,
 	});
-}
-/**
- * Log an event locally and also send to Google Analytics if available.
- * @param {string} eventName - e.g. "scroll_start"
- * @param {string} eventLabel - e.g. "message-1"
- * @param {string} pageId
- */
-export function logLocalEvent(eventName, eventLabel, pageId) {
-	const deviceInfo = getDeviceInfo();
-
-	localEventsQueue.push({
-		event_name: eventName,
-		event_label: eventLabel,
-		page_id: pageId,
-		timestamp: Date.now(),
-		...deviceInfo,
-	});
 
 	// Also log to Google Analytics
 	gtag('event', eventName, {
