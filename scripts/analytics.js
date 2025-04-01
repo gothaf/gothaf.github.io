@@ -1,7 +1,37 @@
 // scripts/analytics.js
 
-// A global (module-level) events queue
 let localEventsQueue = [];
+
+/**
+ * Returns device info (type, resolution, model)
+ */
+function getDeviceInfo() {
+	const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+	const screenWidth = window.screen.width;
+	const screenHeight = window.screen.height;
+	const screenResolution = `${screenWidth}x${screenHeight}`;
+	const isMobile = /android|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent.toLowerCase());
+
+	let model = 'Unknown Device';
+	if (/iPhone/.test(userAgent)) {
+		if (screenHeight === 844) model = 'iPhone 12/12 Pro';
+		else if (screenHeight === 926) model = 'iPhone 12 Pro Max';
+		else if (screenHeight === 896) model = 'iPhone XR/11';
+		else if (screenHeight === 780) model = 'iPhone 13 Mini';
+		else if (screenHeight === 852) model = 'iPhone 14';
+		else if (screenHeight === 932) model = 'iPhone 14 Pro Max';
+	} else if (/Android/.test(userAgent)) {
+		model = 'Android Device';
+	} else if (!isMobile) {
+		model = 'Desktop/Laptop';
+	}
+
+	return {
+		device_type: isMobile ? 'Mobile' : 'Desktop',
+		screen_resolution: screenResolution,
+		device_model: model,
+	};
+}
 
 /**
  * Log an event locally and also send to Google Analytics if available.
@@ -10,16 +40,17 @@ let localEventsQueue = [];
  * @param {string} pageId
  */
 export function logLocalEvent(eventName, eventLabel, pageId) {
-	// Push the event into the local queue
+	const deviceInfo = getDeviceInfo();
+
 	localEventsQueue.push({
 		event_name: eventName,
 		event_label: eventLabel,
 		page_id: pageId,
 		timestamp: Date.now(),
+		...deviceInfo,
 	});
 
 	// Also log to Google Analytics
-	// (If blocked, it will fail silently.)
 	gtag('event', eventName, {
 		event_category: 'engagement',
 		event_label: eventLabel,
@@ -30,11 +61,8 @@ export function logLocalEvent(eventName, eventLabel, pageId) {
  * Send all events in the queue to the backend in one POST request.
  */
 export function flushEvents() {
-	if (localEventsQueue.length === 0) {
-		return;
-	}
+	if (localEventsQueue.length === 0) return;
 
-	// Copy & reset
 	const eventsToSend = [...localEventsQueue];
 	localEventsQueue = [];
 
@@ -45,18 +73,18 @@ export function flushEvents() {
 	})
 		.then((res) => res.json())
 		.then((data) => {
-			//	console.log('Batched events sent successfully:', data);
+			// console.log('Batched events sent:', data);
 		})
 		.catch((err) => {
 			console.error('Error sending batched events:', err);
-			// Optionally re-queue:
+			// Optionally requeue
 			// localEventsQueue = eventsToSend.concat(localEventsQueue);
 		});
 }
 
 /**
  * Setup interval to flush every 2 seconds
- * (Call this function once in main.js)
+ * (Call this once in main.js)
  */
 export function startBatchFlushInterval() {
 	setInterval(() => {
@@ -70,38 +98,27 @@ export function startBatchFlushInterval() {
 export function setupScrollTracking(pageId) {
 	const messageElements = document.querySelectorAll('.message');
 
-	// Intersection Observer for "scroll_start"
 	const observer = new IntersectionObserver(
 		(entries) => {
 			entries.forEach((entry) => {
 				if (entry.isIntersecting && !entry.target.classList.contains('entered')) {
-					// Also log to local queue
 					logLocalEvent('scroll_start', entry.target.dataset.section, pageId);
-
-					// Mark as entered
 					entry.target.classList.add('entered');
 				}
 			});
 		},
-		{
-			root: null,
-			threshold: 0.01,
-		}
+		{ root: null, threshold: 0.01 }
 	);
 
-	// Observe each message element
 	messageElements.forEach((msg) => observer.observe(msg));
 
-	// "scroll_end"
 	window.addEventListener('scroll', () => {
 		messageElements.forEach((msg) => {
 			const rect = msg.getBoundingClientRect();
-			const hasEnded = rect.bottom <= 0; // element is fully above the viewport
+			const hasEnded = rect.bottom <= 0;
 
 			if (hasEnded && !msg.classList.contains('ended')) {
-				// Also log to local queue
 				logLocalEvent('scroll_end', msg.dataset.section, pageId);
-
 				msg.classList.add('ended');
 			}
 		});
