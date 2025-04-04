@@ -361,7 +361,7 @@ export function initializeChatWithData(jsonData) {
 					textWrapper.innerHTML = bubbleHtml;
 
 					// Append icon + text to the bubbleContent
-					bubbleContent.appendChild(svgWrapper);
+					//bubbleContent.appendChild(svgWrapper);
 					bubbleContent.appendChild(textWrapper);
 
 					// Put bubbleContent inside the bubble

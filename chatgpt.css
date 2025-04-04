@@ -303,7 +303,7 @@ header h1 {
 /* ChatGPT’s timestamp on the left */
 .timestamp-left {
 	text-align: left;
-	margin-left: 5rem;
+	margin-left: 2.5rem;
 	margin-top: -1rem;
 }
 
@@ -624,7 +624,7 @@ h3 {
 		padding: 0; /* your bubble padding here */
 	}
 	.timestamp-left {
-		margin-left: 3.5rem;
+		margin-left: 0.8rem;
 	}
 	.attachment-item {
 		max-width: 100%;
