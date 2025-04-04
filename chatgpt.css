@@ -144,7 +144,6 @@ header h1 {
 
 /* Conversation container */
 .conversation {
-	max-width: 98vw;
 	padding: 20px;
 	background-color: var(--main-surface-primary);
 
@@ -306,7 +305,8 @@ header h1 {
 /* ChatGPT’s timestamp on the left */
 .timestamp-left {
 	text-align: left;
-	margin-left: 2.5rem;
+	/* 	margin-left: 2.5rem;
+ */
 	margin-top: -1rem;
 }
 
