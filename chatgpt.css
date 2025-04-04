@@ -187,7 +187,7 @@ header h1 {
 .bubble {
 	display: inline-block;
 	margin-bottom: 5px;
-	max-width: 70%;
+	max-width: 80%;
 	border-radius: 25px;
 	position: relative;
 	line-height: 1.75;
