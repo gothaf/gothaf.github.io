@@ -428,13 +428,13 @@ export function initializeChatWithData(jsonData) {
 								const assetHeight = part.asset.height || 1536;
 
 								// Use landscape if width > height, portrait otherwise
-								const containerClass = assetWidth > assetHeight ? 'overflow-hidden rounded-lg w-full h-full max-w-96 max-h-64' : 'overflow-hidden rounded-lg w-full h-full max-w-64 max-h-96';
+								const containerClass = assetWidth > assetHeight ? 'flex justify-end overflow-hidden rounded-lg w-full h-full max-w-96 max-h-64' : 'flex justify-end overflow-hidden rounded-lg w-full h-full max-w-64 max-h-96';
 
 								// Only one asset: render full-sized image
 								let imageWrapper = document.createElement('div');
 								imageWrapper.className = containerClass;
 								imageWrapper.innerHTML = `
-									<div class="image-container">
+									<div class="image-container flex w-[var(--user-chat-width,70%)] flex-col items-end">
 										<img class="thumbnail max-w-full object-cover object-center overflow-hidden rounded-lg w-full h-full max-h-96 max-w-64 w-fit transition-opacity duration-300 opacity-100" src="${link}" alt="Uploaded image" />
 										<div class="full-image-overlay hidden">
 											<img class="full-image" src="${link}" alt="full image" />

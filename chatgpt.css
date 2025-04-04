@@ -4,20 +4,20 @@ html {
 
 /* Dark theme background and text */
 body {
-	font-size: 1rem;
+	/* font-size: 1rem;
 	line-height: 1.75;
 	letter-spacing: 0.02em;
 	margin: 0;
 	padding: 0;
 	background-color: #212121;
 	color: #f3f3f3;
-	font-family: ui-sans-serif, -apple-system, system-ui, Segoe UI, Helvetica, Apple Color Emoji, Arial, sans-serif, Segoe UI Emoji, Segoe UI Symbol;
+	font-family: ui-sans-serif, -apple-system, system-ui, Segoe UI, Helvetica, Apple Color Emoji, Arial, sans-serif, Segoe UI Emoji, Segoe UI Symbol; */
 }
 
-p {
+/* p {
 	margin: 0;
 }
-
+ */
 /* Header */
 /* Base Header Styles (Desktop by default) */
 header {
@@ -475,12 +475,6 @@ li {
 }
 .overflow-hidden {
 	overflow: hidden;
-}
-.justify-center {
-	justify-content: center;
-}
-.items-center {
-	align-items: center;
 }
 .w-8 {
 	width: 2rem;
