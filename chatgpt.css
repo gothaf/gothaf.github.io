@@ -5,7 +5,6 @@ html {
 /* Dark theme background and text */
 body {
 	/* font-size: 1rem;
-	line-height: 1.75;
 	letter-spacing: 0.02em;
 	margin: 0;
 	padding: 0;
@@ -15,10 +14,12 @@ body {
 	font-family: ui-sans-serif, -apple-system, system-ui, Segoe UI, Helvetica, Apple Color Emoji, Arial, sans-serif, Segoe UI Emoji, Segoe UI Symbol;
 }
 
-/* p {
+/* p,
+ol {
 	margin: 0;
-}
- */
+	line-height: 1.75;
+} */
+
 /* Header */
 /* Base Header Styles (Desktop by default) */
 header {
@@ -188,7 +189,7 @@ header h1 {
 	display: inline-block;
 	margin-bottom: 5px;
 	padding: 0.3rem 1rem;
-	max-width: 65%;
+	max-width: 70%;
 	border-radius: 25px;
 	position: relative;
 	line-height: 1.75;
