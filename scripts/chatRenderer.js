@@ -270,7 +270,7 @@ export function initializeChatWithData(jsonData) {
 		// Loop through messages and create balloon style
 		messages.forEach(function (msg, index) {
 			var messageContainer = document.createElement('div');
-			messageContainer.className = 'message';
+			messageContainer.className = 'message py-5 px-6';
 			// Add the data-section attribute
 			messageContainer.setAttribute('data-section', `message-${index + 1}`);
 
