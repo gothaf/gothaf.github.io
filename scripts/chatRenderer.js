@@ -3,8 +3,86 @@
 import { decodeAndFormatText, parseTablesInText, parseListsAndHeadings } from './parseUtils.js';
 
 // Example assets JSON
-const assetsJson = {
+/* const assetsJson = {
 	'file-service://file-62tGUeckVNgDo7VxUuAMab': 'file-62tGUeckVNgDo7VxUuAMab-A3C5A976-44A7-4EEF-8355-558E41F3C5F8.jpeg',
+};
+ */
+const assetsJson = {
+	'file-service://file-1XVfz3WwrJAzCP4c7wcvjn': 'file-1XVfz3WwrJAzCP4c7wcvjn-44D4DDF8-ABA4-4602-961F-844F55BB5319.jpeg',
+	'file-service://file-VUTMoqw7xfTWx3Y92BfcsP': 'file-VUTMoqw7xfTWx3Y92BfcsP-09215232-4653-4438-A6C8-8DA4CEA3D9CB.jpeg',
+	'file-service://file-8JmPZVLyGUgLSANvuLA7m6': 'file-8JmPZVLyGUgLSANvuLA7m6-86B22275-4971-4906-864D-4FBE384C1BB2.jpeg',
+	'file-service://file-DzFxT111MijP3MWNNAA39s': 'file-DzFxT111MijP3MWNNAA39s-8A11A580-5844-458F-BCD8-8E18A9BD754E.jpeg',
+	'file-service://file-HgH7mE79EDHceYd9S9KemG': 'file-HgH7mE79EDHceYd9S9KemG-52608ECD-B872-466A-A297-BEFBCFD09564.jpeg',
+	'file-service://file-AWwhuyW9Ux5xkQmZNqfXCF': 'file-AWwhuyW9Ux5xkQmZNqfXCF-3F4F4BBF-BCDC-48F1-A16A-609F3C681239.jpeg',
+	'file-service://file-JcaGq82Q1XjunuJ3krRZnG': 'file-JcaGq82Q1XjunuJ3krRZnG-F61D234A-59E9-4FB8-8BE7-4E0D913AE79A.jpeg',
+	'file-service://file-GHVKqHV4mKZ3Muj7qDLK7J': 'file-GHVKqHV4mKZ3Muj7qDLK7J-82EDF208-8818-4B21-94F5-6B1AED02C30F.jpeg',
+	'file-service://file-HT6JMU6xN1TMCZPxfHqDFW': 'file-HT6JMU6xN1TMCZPxfHqDFW-8C302DFE-70B5-4E98-A033-744EA23CB042.jpeg',
+	'file-service://file-9RRJivJiWpXzpAqYnKerRP': 'file-9RRJivJiWpXzpAqYnKerRP-3C5A5EB2-8F6D-41C3-99ED-F7A6B9508752.jpeg',
+	'file-service://file-24oJ9muSwqukX3JceiYbdb': 'file-24oJ9muSwqukX3JceiYbdb-9664A97D-15D2-455C-ACC5-2BA0E4F1171E.jpeg',
+	'file-service://file-MPsb3XGNc3exgfTf3osqYR': 'file-MPsb3XGNc3exgfTf3osqYR-B2E5C109-1D59-4B01-9CCD-FFFAA55C0DB5.jpeg',
+	'file-service://file-RNNDxHx6teTj9xyJZEpCr1': 'file-RNNDxHx6teTj9xyJZEpCr1-68E6AF08-F2A9-4609-B862-224451A6DA2E.jpeg',
+	'file-service://file-62tGUeckVNgDo7VxUuAMab': 'file-62tGUeckVNgDo7VxUuAMab-A3C5A976-44A7-4EEF-8355-558E41F3C5F8.jpeg',
+	'file-service://file-UHjKtnmqDQTr43xgMJXxCt': 'file-UHjKtnmqDQTr43xgMJXxCt-6FDF0B2E-C808-4DC6-98B0-7884664F99FB.jpeg',
+	'file-service://file-EiJofCev2yJ39592NAF2aL': 'file-EiJofCev2yJ39592NAF2aL-23748317-86E1-4307-9FC7-55E2401D8785.jpeg',
+	'file-service://file-3SW3JK3vjHvD8NnN4jKLab': 'file-3SW3JK3vjHvD8NnN4jKLab-62C3A379-F76F-4F74-85A4-84FF943C690A.jpeg',
+	'file-service://file-BRMKUowwqTmGio7sClFVPeSx': 'dalle-generations/file-BRMKUowwqTmGio7sClFVPeSx-6e044c97-f228-4741-a73e-2ebf61378be8.webp',
+	'file-service://file-lZFy9FHna9TbgFIoWb23z6LA': 'dalle-generations/file-lZFy9FHna9TbgFIoWb23z6LA-325749bf-ec89-4def-bb3c-ac487f870682.webp',
+	'file-service://file-zzlhHtTZCy3DLMzoCySMOomx': 'dalle-generations/file-zzlhHtTZCy3DLMzoCySMOomx-95651095-5b30-4066-9781-1f62bed6601d.webp',
+	'file-service://file-6O2MgpZK93aEVvmDDamQOq9w': 'dalle-generations/file-6O2MgpZK93aEVvmDDamQOq9w-86d98667-56b7-4137-ae57-ec20e1c5f6eb.webp',
+	'file-service://file-ub10Pjhsvf5COXttyRfTkIDy': 'dalle-generations/file-ub10Pjhsvf5COXttyRfTkIDy-395988fc-eb61-4302-8c70-b6949b3054ef.webp',
+	'file-service://file-64AUeaCMAdP4pMt5UjcBac3D': 'dalle-generations/file-64AUeaCMAdP4pMt5UjcBac3D-e2a2290b-4d9a-4677-8ab7-85ea4da1a6e2.webp',
+	'file-service://file-dmUzTJD57BiloiEk4BsErPHL': 'dalle-generations/file-dmUzTJD57BiloiEk4BsErPHL-bf98865f-1ce6-4474-ae62-a1e8c879289b.webp',
+	'file-service://file-ZIwaF6cuSk2RA6AznpPZ3fzc': 'dalle-generations/file-ZIwaF6cuSk2RA6AznpPZ3fzc-0dc02997-38b7-4cb6-a6d1-0caf5bb6f980.webp',
+	'file-service://file-XkJxs7FpQDcNDHjOAm5AjX2r': 'dalle-generations/file-XkJxs7FpQDcNDHjOAm5AjX2r-a2a60e61-9c0c-487b-bd83-81b7a9f0266b.webp',
+	'file-service://file-AcgcHCv9tRJLoHzjJSVNOhwp': 'dalle-generations/file-AcgcHCv9tRJLoHzjJSVNOhwp-18ac6528-cbb0-4646-8971-33d202d3d1ce.webp',
+	'file-service://file-2xUBWOrUYrumZRhQP18qUcSS': 'dalle-generations/file-2xUBWOrUYrumZRhQP18qUcSS-0965d1d7-9919-46eb-8809-4e4ec8f6fb2b.webp',
+	'file-service://file-59hDSONCDr4miPrY5LoCBKE4': 'dalle-generations/file-59hDSONCDr4miPrY5LoCBKE4-b8eefc40-b343-4588-91d4-3ab849e6c0d5.webp',
+	'file-service://file-eLSEOGrGXbjR5mDNdUTODHPt': 'dalle-generations/file-eLSEOGrGXbjR5mDNdUTODHPt-98dba892-6ff1-4c13-a55c-09d1908b600a.webp',
+	'file-service://file-Oe8hCp0fmjYcVoAUuKlFpbz1': 'dalle-generations/file-Oe8hCp0fmjYcVoAUuKlFpbz1-8af6c186-e84b-4560-943c-b3c8e1b48354.webp',
+	'file-service://file-gDYR9Dfcc3syGYFqNszXJTaL': 'dalle-generations/file-gDYR9Dfcc3syGYFqNszXJTaL-20c3d9a5-0e12-496c-bb48-e402fb09d075.webp',
+	'file-service://file-JWgwAJS859UN09pi3Zj0ecot': 'dalle-generations/file-JWgwAJS859UN09pi3Zj0ecot-8d7e5d56-5ece-4f65-8e5a-b0c763d60501.webp',
+	'file-service://file-os921NqcyuStozdN8TGA3lRZ': 'dalle-generations/file-os921NqcyuStozdN8TGA3lRZ-2278c683-d14a-4724-b145-2e882e2a9d5c.webp',
+	'file-service://file-TwxGwRKPROko2lOAD6tLUWoI': 'dalle-generations/file-TwxGwRKPROko2lOAD6tLUWoI-5ea95c30-4502-459a-afed-e4a1a59b4fb7.webp',
+	'file-service://file-yO65Q2G5GqfDnzPwieZWCLwS': 'dalle-generations/file-yO65Q2G5GqfDnzPwieZWCLwS-84746a5c-07c5-43ed-b9fb-c9a95588c6b1.webp',
+	'file-service://file-7U9nBTlrN1E22feaM1F2TCM9': 'dalle-generations/file-7U9nBTlrN1E22feaM1F2TCM9-60a21c46-11c6-4be8-9b1c-719632bc7bd6.webp',
+	'file-service://file-SEMCVevQFyoKOoQjRLirIkN0': 'file-SEMCVevQFyoKOoQjRLirIkN0-image.png',
+	'file-service://file-X49MWNe4rnmJqMPl37WCICv5': 'file-X49MWNe4rnmJqMPl37WCICv5-IMG_0617.jpeg',
+	'file-service://file-XY8GbpWuKi4g6deZR6BlZgYD': 'file-XY8GbpWuKi4g6deZR6BlZgYD-image.png',
+	'file-service://file-4kcx5FwBvGIIEb8Ypx1hMynC': 'file-4kcx5FwBvGIIEb8Ypx1hMynC-image.png',
+	'file-service://file-QofMC2gDPXblVzEQhQOzw2rE': 'file-QofMC2gDPXblVzEQhQOzw2rE-image.png',
+	'file-service://file-BgyADyvNJDBoyMUvMowAZzVJ': 'file-BgyADyvNJDBoyMUvMowAZzVJ-image.png',
+	'file-service://file-bJClMxd1zfpqwWgNDt4WWGMJ': 'file-bJClMxd1zfpqwWgNDt4WWGMJ-image.png',
+	'file-service://file-tdk1upZiFmTwae8dpVo2f3aj': 'file-tdk1upZiFmTwae8dpVo2f3aj-image.png',
+	'file-service://file-OpB047J02abeL30Y8DRc5q3I': 'dalle-generations/file-OpB047J02abeL30Y8DRc5q3I-b1da8dd7-5a74-45ef-b595-b2cd3bb7fb7c.webp',
+	'file-service://file-sy9FMTZJ6plo1W9Of5vb8pEm': 'dalle-generations/file-sy9FMTZJ6plo1W9Of5vb8pEm-eb9a1279-1c38-4880-8c59-a12516a866d3.webp',
+	'file-service://file-42IhLLILdcqP0yCt9ZZdjgxZ': 'dalle-generations/file-42IhLLILdcqP0yCt9ZZdjgxZ-c29f8511-99ef-44fa-81ef-feb7a59c359c.webp',
+	'file-service://file-xONCeue2Zt7vZCoN2YCOaFf2': 'dalle-generations/file-xONCeue2Zt7vZCoN2YCOaFf2-852ed3d3-f4ad-4fb9-84aa-62ce48541f40.webp',
+	'file-service://file-bYSDQ2uMmOfKm5e5fJyYuo9G': 'dalle-generations/file-bYSDQ2uMmOfKm5e5fJyYuo9G-223f4901-1fe3-4b21-853b-6551e3c2eb6b.webp',
+	'file-service://file-DdSHwWjHYrgk5C7GJjNNR8m7': 'dalle-generations/file-DdSHwWjHYrgk5C7GJjNNR8m7-4aff440e-31a0-43bb-90d3-df5e8aee9db3.webp',
+	'file-service://file-qNHrL7csBCO9dohyzXMC008L': 'dalle-generations/file-qNHrL7csBCO9dohyzXMC008L-d0eb3219-7a15-4d25-8307-38347a769469.webp',
+	'file-service://file-FpOu9WJUTjVm4GaaxJ9xh4ZA': 'dalle-generations/file-FpOu9WJUTjVm4GaaxJ9xh4ZA-dda386f5-6f0a-4be8-8e28-286437698f7a.webp',
+	'file-service://file-QOEKYorNeBIGuA6Rn0oDezaA': 'dalle-generations/file-QOEKYorNeBIGuA6Rn0oDezaA-991d141a-2da3-43ca-a712-24c4a87c1e3c.webp',
+	'file-service://file-s6NhUGLpMdSjXAX1s7tZocIk': 'dalle-generations/file-s6NhUGLpMdSjXAX1s7tZocIk-6d4302f1-b992-4183-a379-ab7910e90b4a.webp',
+	'file-service://file-qRnmqxp3lqSGcuWWmCckIGet': 'dalle-generations/file-qRnmqxp3lqSGcuWWmCckIGet-e4eb8c96-d81d-46d6-b188-4377ea2afc23.webp',
+	'file-service://file-vtI9JrsusqdsvvUpARHBJBcn': 'dalle-generations/file-vtI9JrsusqdsvvUpARHBJBcn-cf5f7902-c127-4214-b199-924bdc8d6561.webp',
+	'file-service://file-MlbKsKJr6KOBwuMlA5Db0RmK': 'dalle-generations/file-MlbKsKJr6KOBwuMlA5Db0RmK-b8ecf2f5-d31f-4f72-b1f9-358060a0fa4d.webp',
+	'file-service://file-KTjp7LpT5NGZDjuc0jtkn2kU': 'file-KTjp7LpT5NGZDjuc0jtkn2kU-image.png',
+	'file-service://file-Em8yjCOxlDieWOv5dBIkdZdw': 'file-Em8yjCOxlDieWOv5dBIkdZdw-image.png',
+	'file-service://file-ephxiPNSW6fegWbsO7zMDFTv': 'file-ephxiPNSW6fegWbsO7zMDFTv-image.png',
+	'file-service://file-jjw92Df8A26ufRao0K1kOI6T': 'dalle-generations/file-jjw92Df8A26ufRao0K1kOI6T-a1b74009-406d-49cf-b778-5a97e48a9174.webp',
+	'file-service://file-CczGd6LvvT6lmHMe9IlAsuIA': 'dalle-generations/file-CczGd6LvvT6lmHMe9IlAsuIA-e914734a-28e1-4c8c-b3b1-2a89fe3e289b.webp',
+	'file-service://file-6UFWQhQkYj3y7pCPwZsgaKKg': 'dalle-generations/file-6UFWQhQkYj3y7pCPwZsgaKKg-f0493d05-1923-4b0a-beb7-ca5fb7c1a411.webp',
+	'file-service://file-xAOucQCM3dL85WSUvEDjI76Z': 'dalle-generations/file-xAOucQCM3dL85WSUvEDjI76Z-f64ff2b5-3ac7-4584-99cc-0edfdd3f7a96.webp',
+	'file-service://file-N3YIcsry541KlXEVKLhAtWpR': 'dalle-generations/file-N3YIcsry541KlXEVKLhAtWpR-ca51c66b-eb6a-4405-813b-9912025e6d5b.webp',
+	'file-service://file-jzkQUaaHFyiL6qc1heq4AEuB': 'dalle-generations/file-jzkQUaaHFyiL6qc1heq4AEuB-de40a527-893c-4afb-aed7-2d5771189313.webp',
+	'file-service://file-B8zo9tr1YzhBu3On3DoL4FOu': 'dalle-generations/file-B8zo9tr1YzhBu3On3DoL4FOu-958dcaea-1981-4b2d-a80e-7dd4f09aa0ba.webp',
+	'file-service://file-9J1m40OT0FOGob0GDFVrXEXE': 'dalle-generations/file-9J1m40OT0FOGob0GDFVrXEXE-a5ef43fe-e6c2-4955-8e20-92a095ffec74.webp',
+	'file-service://file-0ozKkUXc6JO5KcLzvfP7adAc': 'dalle-generations/file-0ozKkUXc6JO5KcLzvfP7adAc-3a402501-04f6-4d55-a2ad-388c29cd32a2.webp',
+	'file-service://file-gRIzStE531G60Kw9qQnzznxj': 'dalle-generations/file-gRIzStE531G60Kw9qQnzznxj-124684b6-9e4b-4216-8105-4b65c0824209.webp',
+	'file-service://file-kXEC62mlBUeGAjcefmSi6pIf': 'dalle-generations/file-kXEC62mlBUeGAjcefmSi6pIf-55e339e4-e9dd-4c54-9c77-b8be0ff98680.webp',
+	'file-service://file-ZibU8UjTJipJ4RkaPPXfY5S7': 'dalle-generations/file-ZibU8UjTJipJ4RkaPPXfY5S7-90f1449c-998d-450d-9204-5a6a4682f8a2.webp',
+	'file-service://file-QjlUdaStqZkTZ51TibOh9ISz': 'dalle-generations/file-QjlUdaStqZkTZ51TibOh9ISz-f4a6905a-b0f1-4614-953e-0eed947722d1.webp',
+	'file-service://file-q9ZiBlfuFyBNIUjFDkvYTVbx': 'dalle-generations/file-q9ZiBlfuFyBNIUjFDkvYTVbx-03fe8596-9180-4f05-8699-b3921ffe8f9f.webp',
 };
 
 /**
@@ -340,24 +418,60 @@ export function initializeChatWithData(jsonData) {
 					} else if (part.asset) {
 						const link = assetsJson[part.asset.asset_pointer];
 						if (link) {
-							// Instead of a bubble, we'll create a "image-wrapper"
-							let imageWrapper = document.createElement('div');
-							imageWrapper.className = 'image-wrapper';
+							// Count how many parts in this message are assets
+							const assetCount = msg.parts.filter((p) => p.asset).length;
 
-							imageWrapper.innerHTML = `
-								  <div class="image-container">
-									<img class="thumbnail" src="${link}" alt="image thumbnail" />
-									<div class="full-image-overlay hidden">
-									  <img class="full-image" src="${link}" alt="full image" />
-									  <button class="close-overlay">&times;</button>
+							if (assetCount === 1) {
+								// Determine orientation based on asset dimensions (if available)
+								// Fallback to default values if not provided.
+								const assetWidth = part.asset.width || 709;
+								const assetHeight = part.asset.height || 1536;
+
+								// Use landscape if width > height, portrait otherwise
+								const containerClass = assetWidth > assetHeight ? 'overflow-hidden rounded-lg w-full h-full max-w-96 max-h-64' : 'overflow-hidden rounded-lg w-full h-full max-w-64 max-h-96';
+
+								// Only one asset: render full-sized image
+								let imageWrapper = document.createElement('div');
+								imageWrapper.className = containerClass;
+								imageWrapper.innerHTML = `
+									<div class="image-container">
+										<img class="thumbnail max-w-full object-cover object-center overflow-hidden rounded-lg w-full h-full max-h-96 max-w-64 w-fit transition-opacity duration-300 opacity-100" src="${link}" alt="Uploaded image" />
+										<div class="full-image-overlay hidden">
+											<img class="full-image" src="${link}" alt="full image" />
+											<button class="close-overlay">&times;</button>
+										</div>
 									</div>
-								  </div>
 								`;
+								messageContainer.appendChild(imageWrapper);
+							} else {
+								// Multiple assets: group as thumbnails.
+								let imageGroup = messageContainer.querySelector('.image-group');
+								if (!imageGroup) {
+									imageGroup = document.createElement('div');
+									imageGroup.className = 'image-group flex flex-row items-center justify-end gap-1 flex-wrap max-w-52';
+									messageContainer.appendChild(imageGroup);
+								}
 
-							// Append the imageWrapper directly to messageContainer
-							messageContainer.appendChild(imageWrapper);
+								// Preserve the original wrapping div structure exactly,
+								// and simply add the full-image overlay markup.
+								let imageWrapper = document.createElement('div');
+								imageWrapper.innerHTML = `
+									<div class="flex w-[var(--user-chat-width,70%)] flex-col items-end">
+										<div class="image-container bg-token-main-surface-secondary text-token-text-tertiary relative flex h-auto w-full max-w-lg items-center justify-center overflow-hidden aspect-square">
+											<button type="button" aria-haspopup="dialog" aria-expanded="false" data-state="closed" class="h-16 w-16 overflow-hidden rounded-lg">
+												<img alt="Uploaded image" width="709" height="1536" class="thumbnail max-w-full aspect-square object-cover object-center h-16 w-16 overflow-hidden rounded-lg w-fit transition-opacity duration-300 opacity-100" src="${link}">
+											</button>
+											<div class="full-image-overlay hidden">
+												<img class="full-image" src="${link}" alt="full image" />
+												<button class="close-overlay">&times;</button>
+											</div>
+										</div>
+									</div>
+								`;
+								imageGroup.appendChild(imageWrapper);
+							}
 						} else {
-							// Possibly handle the missing asset scenario
+							// Handle missing asset scenario
 							let noFileDiv = document.createElement('div');
 							noFileDiv.textContent = '[File]: -Deleted-';
 							messageContainer.appendChild(noFileDiv);

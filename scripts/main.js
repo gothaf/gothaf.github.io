@@ -78,6 +78,7 @@ document.addEventListener('click', (event) => {
 		const imageContainer = event.target.closest('.image-container');
 		const overlay = imageContainer.querySelector('.full-image-overlay');
 		overlay.classList.remove('hidden');
+		console.log('IMAGE CLICKED');
 	}
 
 	// If the close button or the overlay background was clicked
