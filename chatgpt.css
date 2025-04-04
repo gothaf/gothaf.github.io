@@ -1,5 +1,6 @@
 html {
 	font-size: 16px; /* Base font size */
+	background-color: var(--main-surface-primary);
 }
 
 /* Dark theme background and text */
