@@ -326,7 +326,8 @@ header h1 {
 
 /* Text area on the right */
 .chatgpt-text-wrapper {
-	max-width: 85vw;
+	/* 	max-width: 85vw;
+ */
 	display: flex;
 	flex-direction: column;
 	/* style as needed */
