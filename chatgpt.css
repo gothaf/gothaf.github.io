@@ -1,6 +1,5 @@
 html {
 	font-size: 16px; /* Base font size */
-	background-color: var(--main-surface-primary);
 }
 
 /* Dark theme background and text */
@@ -329,8 +328,7 @@ header h1 {
 
 /* Text area on the right */
 .chatgpt-text-wrapper {
-	/* 	max-width: 85vw;
- */
+	max-width: 100%;
 	display: flex;
 	flex-direction: column;
 	/* style as needed */
@@ -535,12 +533,10 @@ li {
 }
 hr {
 	display: block;
-	width: 105%;
 	border-color: hsla(0, 0%, 100%, 0.25);
 	border-top-width: 1px;
 	margin-bottom: 1em;
 	margin-top: 1em;
-	margin-left: -1.5rem;
 }
 
 table {
