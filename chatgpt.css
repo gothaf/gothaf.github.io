@@ -144,8 +144,8 @@ header h1 {
 .conversation {
 	max-width: 98vw;
 	padding: 20px;
-	/* 	background-color: #212121;
- */
+	background-color: var(--main-surface-primary);
+
 	border-radius: 6px;
 }
 
