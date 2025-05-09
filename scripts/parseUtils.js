@@ -161,153 +161,147 @@ export function convertTableLinesToHtml(tableLines) {
  * - Lines that start with "-" -> unordered list item
  * - Indentation determines nesting levels (based on multiples of 2 or 4 spaces).
  */
+/**
+ * parseListsAndHeadings
+ *
+ * • detects block-quotes starting with "> "
+ * • supports headings (####, ###, ##)
+ * • handles ordered / unordered / nested lists by indentation
+ * • leaves table-HTML intact
+ */
 export function parseListsAndHeadings(text) {
 	const lines = text.split('\n');
 	let html = '';
-	let stack = []; // will hold objects { type: 'ol'|'ul', indent: number }
+	let stack = []; // [{ type: 'ol' | 'ul', indent }]
 
-	// Helper to close the last list on the stack
+	/* ---------- list helpers ---------- */
 	function closeLastList() {
-		if (stack.length > 0) {
+		if (stack.length) {
 			const last = stack.pop();
 			html += `</${last.type}>`;
 		}
 	}
 
-	// Helper to close lists until indent is matched or stack is empty
 	function closeListsToIndent(indent) {
-		while (stack.length > 0 && stack[stack.length - 1].indent >= indent) {
+		while (stack.length && stack[stack.length - 1].indent >= indent) {
 			closeLastList();
 		}
 	}
 
-	// Modified openList to allow an optional start number
 	function openList(type, indent, startNum = null) {
-		if (type === 'ol' && startNum !== null) {
-			// if you want the list to begin at "startNum"
-			html += `<ol start="${startNum}">`;
-		} else {
-			html += `<${type}>`;
-		}
+		html += type === 'ol' && startNum !== null ? `<ol start="${startNum}">` : `<${type}>`;
 		stack.push({ type, indent });
 	}
 
-	// Function to handle a line that is a list item
-	// Now accepts "itemNumber" for ordered lists.
-	function handleListItem(line, indent, isOrdered, content, itemNumber = null) {
-		// Determine if we need to open or close lists
-		if (stack.length === 0) {
-			// Not in a list yet, open one
-			// For ordered: pass itemNumber to openList
+	function handleListItem(indent, isOrdered, content, itemNumber = null) {
+		if (!stack.length) {
 			openList(isOrdered ? 'ol' : 'ul', indent, isOrdered ? itemNumber : null);
 		} else {
 			let top = stack[stack.length - 1];
+
 			if (top.type !== (isOrdered ? 'ol' : 'ul')) {
-				// Close until we can open the desired list
 				closeListsToIndent(indent);
 				openList(isOrdered ? 'ol' : 'ul', indent, isOrdered ? itemNumber : null);
-			} else {
-				// same type, check indent
-				if (top.indent < indent) {
-					// open a nested list
+			} else if (top.indent < indent) {
+				openList(isOrdered ? 'ol' : 'ul', indent, isOrdered ? itemNumber : null);
+			} else if (top.indent > indent) {
+				closeListsToIndent(indent);
+				top = stack[stack.length - 1] || {};
+				if (top.type !== (isOrdered ? 'ol' : 'ul')) {
 					openList(isOrdered ? 'ol' : 'ul', indent, isOrdered ? itemNumber : null);
-				} else if (top.indent > indent) {
-					// close higher indent lists
-					closeListsToIndent(indent);
-					// if now the top is not the right type, open a new one
-					top = stack[stack.length - 1];
-					if (!top || top.type !== (isOrdered ? 'ol' : 'ul')) {
-						openList(isOrdered ? 'ol' : 'ul', indent, isOrdered ? itemNumber : null);
-					}
 				}
 			}
 		}
 
-		// Now add the <li> item.
-		// If it's an ordered list item, set value="itemNumber"
-		if (isOrdered && itemNumber !== null) {
-			html += `<li value="${itemNumber}">${decodeAndFormatText(content)}</li>`;
-		} else {
-			html += `<li>${decodeAndFormatText(content)}</li>`;
-		}
+		html += isOrdered && itemNumber !== null ? `<li value="${itemNumber}">${decodeAndFormatText(content)}</li>` : `<li>${decodeAndFormatText(content)}</li>`;
 	}
+	/* ---------------------------------- */
 
-	// Regex to detect lines that begin with common table-related tags
-	// so we skip them (they're already HTML <table>, <tr>, <td>, etc.)
 	const tableTagRegex = /^(<table|<\/table|<tr|<\/tr|<td|<\/td|<thead|<\/thead|<tbody|<\/tbody|<th|<\/th)/i;
 
 	for (let i = 0; i < lines.length; i++) {
-		let rawLine = lines[i];
-
-		// Trim right side but preserve left indentation for nesting
-		let rightTrimmed = rawLine.replace(/\s+$/, '');
+		const rawLine = lines[i];
+		const rightTrimmed = rawLine.replace(/\s+$/, '');
 		if (!rightTrimmed) {
-			// An empty line -> close all open lists
-			while (stack.length > 0) {
-				closeLastList();
+			// blank line
+			while (stack.length) closeLastList();
+			continue;
+		}
+
+		/* ---------- 1. block-quote ---------- */
+		if (/^>\s+/.test(rightTrimmed.trimStart())) {
+			while (stack.length) closeLastList(); // close any open lists
+
+			// gather consecutive quote lines
+			const quoteLines = [];
+			let j = i;
+			while (j < lines.length && /^>\s+/.test(lines[j].trimStart())) {
+				quoteLines.push(lines[j].replace(/^>\s+/, '')); // strip "> "
+				j++;
 			}
+			i = j - 1; // resume loop at the last quote line
+
+			html += '<blockquote>';
+			quoteLines.forEach((qLine) => {
+				html += `<p>${decodeAndFormatText(qLine)}</p>`;
+			});
+			html += '</blockquote>';
+			continue; // skip remaining checks for these lines
+		}
+		/* ------------------------------------ */
+
+		/* ---------- 2. table-HTML ---------- */
+		if (tableTagRegex.test(rightTrimmed.trimStart())) {
+			while (stack.length) closeLastList();
+			html += rightTrimmed + '\n';
 			continue;
 		}
+		/* ------------------------------------ */
 
-		// Count leading spaces for indentation
-		let matchIndent = rightTrimmed.match(/^(\s+)/);
-		let indent = matchIndent ? matchIndent[1].length : 0;
+		const indent = (rightTrimmed.match(/^(\s+)/) || [''])[0].length;
+		const line = rightTrimmed.trimStart();
 
-		// Now we remove the leading spaces to parse content
-		let line = rightTrimmed.trimStart();
-
-		// 1) If the line starts with a table tag, just keep it as-is
-		if (tableTagRegex.test(line)) {
-			// Close any open lists
-			while (stack.length > 0) {
-				closeLastList();
-			}
-			// Keep the table code intact
-			html += line + '\n';
+		/* ---------- 3. headings ---------- */
+		const h4 = line.match(/^####\s+(.*)/);
+		if (h4) {
+			while (stack.length) closeLastList();
+			html += `<h4>${decodeAndFormatText(h4[1])}</h4>`;
 			continue;
 		}
-
-		// 2) Heading "#### "
-		let headingMatch = line.match(/^####\s+(.*)/);
-		if (headingMatch) {
-			// Close any open lists first
-			while (stack.length > 0) {
-				closeLastList();
-			}
-			html += `<h4>${decodeAndFormatText(headingMatch[1])}</h4>`;
+		const h3 = line.match(/^###\s+(.*)/);
+		if (h3) {
+			while (stack.length) closeLastList();
+			html += `<h3>${decodeAndFormatText(h3[1])}</h3>`;
 			continue;
 		}
-
-		// 3) Ordered list item: "1. Something"
-		let olMatch = line.match(/^(\d+)\.\s+(.*)/);
-		if (olMatch) {
-			let itemNumber = parseInt(olMatch[1], 10); // parse the numeric prefix
-			let content = olMatch[2];
-			handleListItem(line, indent, true, content, itemNumber);
+		const h2 = line.match(/^##\s+(.*)/);
+		if (h2) {
+			while (stack.length) closeLastList();
+			html += `<h2>${decodeAndFormatText(h2[1])}</h2>`;
 			continue;
 		}
+		/* ----------------------------------- */
 
-		// 4) Unordered list item: "- Something"
-		let ulMatch = line.match(/^-\s+(.*)/);
-		if (ulMatch) {
-			let content = ulMatch[1];
-			handleListItem(line, indent, false, content);
+		/* ---------- 4. list items ---------- */
+		const ol = line.match(/^(\d+)\.\s+(.*)/); // e.g. "1. item"
+		if (ol) {
+			handleListItem(indent, true, ol[2], parseInt(ol[1], 10));
 			continue;
 		}
-
-		// 5) If it doesn't match a heading or list or table,
-		//    treat as a normal paragraph.
-		while (stack.length > 0) {
-			closeLastList();
+		const ul = line.match(/^-\s+(.*)/); // e.g. "- item"
+		if (ul) {
+			handleListItem(indent, false, ul[1]);
+			continue;
 		}
+		/* ----------------------------------- */
 
+		/* ---------- 5. normal paragraph ---- */
+		while (stack.length) closeLastList();
 		html += `<p>${decodeAndFormatText(line)}</p>`;
 	}
 
-	// End of all lines -> close any lists still open
-	while (stack.length > 0) {
-		closeLastList();
-	}
+	// close any dangling lists
+	while (stack.length) closeLastList();
 
 	return html;
 }

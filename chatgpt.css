@@ -683,3 +683,33 @@ h3 {
 .inline-block {
 	display: inline-block;
 }
+
+/* ------------------------------------------------------------------
+   Stylish block-quote (matches OpenAI’s look)
+   ------------------------------------------------------------------*/
+.bubble blockquote {
+	/* reset & typography */
+	margin: 0; /* remove default margins */
+	padding: 0.5rem 0 0.5rem 1.25rem; /* space left for the bar */
+	position: relative;
+	color: #d0d0d0; /* slightly lighter than body text */
+	line-height: 1.5;
+}
+
+/* ▼ the vertical bar */
+.bubble blockquote::before {
+	content: '';
+	position: absolute;
+	top: 1.25rem; /* same as padding-top */
+	bottom: 1.25rem; /* same as padding-bottom */
+	left: 0; /* LTR default */
+	width: 4px;
+	border-radius: 2px;
+	background: #555; /* pick any neutral “border” tone */
+}
+
+/* Support RTL pages as well */
+[dir='rtl'] .bubble blockquote::before {
+	left: auto;
+	right: 0;
+}
