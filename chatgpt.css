@@ -712,3 +712,24 @@ h3 {
 	left: auto;
 	right: 0;
 }
+@media print {
+	/* Define page margins for the printer */
+	header {
+		display: none;
+	}
+	#root {
+		max-width: none;
+	}
+
+	@page {
+		margin-top: 50px; /* ← pushes content down 50px */
+		margin-right: 20mm; /* you can set your own side/bottom margins */
+		margin-bottom: 20mm;
+		margin-left: 20mm;
+	}
+
+	/* Reset body margins so they don't add on top of @page */
+	body {
+		margin: 0;
+	}
+}
