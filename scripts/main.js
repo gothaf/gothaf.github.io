@@ -91,26 +91,35 @@ document.addEventListener('click', (event) => {
 	}
 });
 
-window.addEventListener('beforeunload', function () {
-	// Prepare the payload
+// Send at most one page_exit per page view. Both listeners below fire for a
+// single exit, and visibilitychange fires on every tab hide, so without this
+// guard one visit produced many duplicate events.
+let exitEventSent = false;
+
+function sendExitEvent() {
+	if (exitEventSent) {
+		return;
+	}
+	exitEventSent = true;
+
 	const payload = JSON.stringify({
 		event_name: 'page_exit',
 		page_id: document.querySelector('meta[name="page-id"]')?.content || document.title,
 		timestamp: Date.now(),
-		// Optionally include any other details like device info if desired
 	});
 
-	// Use sendBeacon to reliably send the exit event
-	navigator.sendBeacon('https://api.test.tradext.gr/github_pages/events.php', payload);
-});
+	// Blob sets an explicit Content-Type; a bare string would be sent as
+	// text/plain, which the API's WAF rejects.
+	navigator.sendBeacon(
+		'https://api.test.tradext.gr/github_pages/events.php',
+		new Blob([payload], { type: 'application/json' })
+	);
+}
+
+window.addEventListener('beforeunload', sendExitEvent);
 
 document.addEventListener('visibilitychange', function () {
 	if (document.visibilityState === 'hidden') {
-		const payload = JSON.stringify({
-			event_name: 'page_exit',
-			page_id: document.querySelector('meta[name="page-id"]')?.content || document.title,
-			timestamp: Date.now(),
-		});
-		navigator.sendBeacon('https://api.test.tradext.gr/github_pages/events.php', payload);
+		sendExitEvent();
 	}
 });
