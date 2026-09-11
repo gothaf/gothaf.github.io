@@ -311,13 +311,29 @@ export function applyContentReferences(text, contentReferences) {
 				break;
 		}
 
-		// Replace the matched substring [start_idx, end_idx) in `modifiedText`
-		// with the replacement. Note that end_idx is presumably the character
-		// AFTER the match, so we slice up to that index.
-		// Double-check the off-by-one logic if needed.
-		const before = modifiedText.slice(0, start_idx);
-		const after = modifiedText.slice(end_idx);
-		modifiedText = before + replacement + after;
+		// Replace the matched substring [start_idx, end_idx) in `modifiedText`.
+		// The offsets come from the export and are only valid for the text as it
+		// was exported: editing a message (renaming people, stripping citation
+		// markers) shifts every later offset, and slicing blindly then deletes
+		// real prose instead of the marker. So only trust the offsets when the
+		// span still holds `matched_text`; otherwise fall back to the first
+		// literal occurrence, and if the marker is gone entirely, leave the
+		// text alone. Note we never re-derive an index for the loop -- the
+		// descending start_idx sort relies on untouched offsets staying valid.
+		if (end_idx <= start_idx) {
+			// Degenerate span (e.g. `sources_footnote` records [n,n) with a lone
+			// space as matched_text). There is nothing to replace, so splice in
+			// place -- searching for matched_text here would eat an unrelated
+			// space elsewhere in the message.
+			modifiedText = modifiedText.slice(0, start_idx) + replacement + modifiedText.slice(end_idx);
+		} else if (modifiedText.slice(start_idx, end_idx) === matched_text) {
+			modifiedText = modifiedText.slice(0, start_idx) + replacement + modifiedText.slice(end_idx);
+		} else {
+			const foundAt = modifiedText.indexOf(matched_text);
+			if (foundAt !== -1) {
+				modifiedText = modifiedText.slice(0, foundAt) + replacement + modifiedText.slice(foundAt + matched_text.length);
+			}
+		}
 	});
 
 	return modifiedText;
